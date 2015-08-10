@@ -1,5 +1,5 @@
-var start = process.argv[2];
-var stop = process.argv[3];
+var start = +process.argv[2];
+var stop = +process.argv[3];
 // I expect this to be run from node.
 
 // I'll make some starting assumptions, here.
@@ -8,7 +8,8 @@ var stop = process.argv[3];
 
 /* We must check that the ranges are in legal limits.  Since partial hours don't count, I'll suppose that all entered times are integers representing the top of following hour (e.g., 6 means 6:00 PM). */
 if (start >= 5 && stop <= 4 ) {
-	console.log("$" + 32 + (12 * (8 - start)) + (16 * stop) + ".00");
+	var value = 32 + ((8 - start) * 12) + (16 * stop);
+	console.log("$" + value + ".00");
 } else {
 	console.log("You can't start before 5PM or stay after 4AM.");
 }
